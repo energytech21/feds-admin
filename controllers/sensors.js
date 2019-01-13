@@ -29,7 +29,7 @@ exports.post_sensors = (req, res, next) => {
                         req.io.emit('alarm/smoke', sensor_data);
                     }
                 });
-                conn.query("insert into sensors_smoke (data,location_id) values (?,?)", [sensor_data.data, loc_id], (err, result) => {
+                conn.query("insert into sensors_smoke (data,location_id,time) values (?,?)", [sensor_data.data, loc_id,req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
                     if (err) return next("CONNECTION ERROR CHECK QUERY");
 
                     conn.commit(function (err) {
@@ -62,7 +62,7 @@ exports.post_sensors = (req, res, next) => {
                     }
                 });
 
-                conn.query("insert into sensors_temperature (data,location_id) values (?,?)", [sensor_data.data, loc_id], (err, result) => {
+                conn.query("insert into sensors_temperature (data,location_id,time) values (?,?,?)", [sensor_data.data, loc_id,req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
                     if (err) return next("CONNECTION ERROR CHECK QUERY");
 
                     conn.commit(function (err) {
@@ -166,7 +166,7 @@ exports.post_earthquake = (req, res, next) => {
         });
 
         conn.beginTransaction((err) => {
-            conn.query("insert into sensors_earthquake (x_data,y_data,z_data) values (?,?,?)", [sensor_data.x_data, sensor_data.y_data, sensor_data.z_data], (err, result) => {
+            conn.query("insert into sensors_earthquake (x_data,y_data,z_data,time) values (?,?,?,?)", [sensor_data.x_data, sensor_data.y_data, sensor_data.z_data,req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
                 if (err) return next("CONNECTION ERROR CHECK QUERY");
 
                 conn.commit(function (err) {
@@ -194,7 +194,6 @@ exports.get_sensors_data = (req, res, next) => {
             sensor_type: req.body.sensor_type
         };
 
-        console.log(sensor_data);
         conn.beginTransaction((err) => {
             if (sensor_data.sensor_type == "smoke") {
                 var table_data = { x: [], y: [], sensor_type: "smoke" };

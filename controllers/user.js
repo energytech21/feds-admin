@@ -30,7 +30,7 @@ exports.list = (req, res, next) => {
             users_id: e.users_id,
             user_fullname : e.user_fullname,
             address : e.address,
-            dateCreated : req.moment.tz(e.dateCreated,'Asia/Manila').format("DD-MM-YYYY hh:mm:ss A"),
+            dateCreated : req.moment(e.dateCreated).format("DD-MM-YYYY hh:mm:ss A"),
             status : e.status
           }
           ;
@@ -103,7 +103,8 @@ exports.add = (req, res, next) => {
                   user_password: req.body.pword,
                   userlevel_id: 2, //admin
                   userinfo_id: uinfo_id,
-                  status_id: 3 //on approval
+                  status_id: 3 ,//on approval
+                  dateCreated: req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")
                 };
                 var query = conn.query(
                   "insert into user_users set ?",
@@ -348,7 +349,7 @@ exports.getReports = (req, res, next) => {
             createdBy : e.createdBy,
             details : e.details,
             location : e.location,
-            createdOn :  req.moment().tz(e.createdOn,'Asia/Manila').format("DD-MM-YYYY hh:mm:ss A")}
+            createdOn :  req.moment(e.createdOn).format("DD-MM-YYYY hh:mm:ss A")}
           ;
           parsedData.push(rowdata);
         });
