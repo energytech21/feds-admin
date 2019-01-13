@@ -29,7 +29,7 @@ exports.post_sensors = (req, res, next) => {
                         req.io.emit('alarm/smoke', sensor_data);
                     }
                 });
-                conn.query("insert into sensors_smoke (data,location_id,time) values (?,?)", [sensor_data.data, loc_id,req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
+                conn.query("insert into sensors_smoke (data,location_id,time) values (?,?,?)", [sensor_data.data, loc_id,req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
                     if (err) return next("CONNECTION ERROR CHECK QUERY");
 
                     conn.commit(function (err) {
