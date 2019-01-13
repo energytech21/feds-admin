@@ -276,7 +276,7 @@ exports.report = (req,res,next)=>{
       location_id : req.body.loc_id,
       createdBy: req.body.sender,
       details: req.body.details,
-      createdOn: req.moment().tz("Asia/Manila").format()
+      createdOn: req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")
     }
 	
     console.log(req.body);
