@@ -276,7 +276,8 @@ exports.report = (req,res,next)=>{
       createdBy: req.body.sender,
       details: req.body.details,
     }
-	console.log(report_data);
+	
+    console.log(req.body);
     conn.beginTransaction(err =>{
       if (err) return next(err);
 
