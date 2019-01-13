@@ -168,7 +168,7 @@ function editUser(users_id) {
     .modal({
       closable: false,
       onApprove: function() {
-        setFormValidations(row);
+        setFormValidations(response[0]);
         $("#regform").form("validate form");
         return false;
       },
