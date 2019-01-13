@@ -276,6 +276,7 @@ exports.report = (req,res,next)=>{
       location_id : req.body.loc_id,
       createdBy: req.body.sender,
       details: req.body.details,
+      createdOn: req.moment().tz("Asia/Manila").format()
     }
 	
     console.log(req.body);
@@ -283,8 +284,8 @@ exports.report = (req,res,next)=>{
       if (err) return next(err);
 
       conn.query(
-        "insert into data_reports (location_id,createdBy,details,createdOn) values (?,?,?,?)",
-        [report_data.location_id,report_data.createdBy,report_data.details,req.moment().tz("Asia/Manila").format()],
+        "insert into data_reports set ?",
+        report_data,
         (err, result) => {
           if (err) return next("CONNECTION ERROR CHECK QUERY");
 
@@ -347,7 +348,7 @@ exports.getReports = (req, res, next) => {
             createdBy : e.createdBy,
             details : e.details,
             location : e.location,
-            createdOn :  req.moment.tz(e.createdOn,'Asia/Manila').format("DD-MMM-YYYY hh:mm:ss A")}
+            createdOn :  req.moment().tz(e.createdOn,'Asia/Manila').format("DD-MM-YYYY hh:mm:ss A")}
           ;
           parsedData.push(rowdata);
         });
