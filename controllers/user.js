@@ -287,7 +287,7 @@ exports.report = (req,res,next)=>{
         "insert into data_reports set ?",
         report_data,
         (err, result) => {
-          if (err) return next("CONNECTION ERROR CHECK QUERY");
+          if (err) return next(err);
 
           conn.commit(function(err) {
             if (err) {
