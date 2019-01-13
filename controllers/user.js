@@ -3,7 +3,7 @@ exports.list = (req, res, next) => {
     res.redirect("/");
   } else {
     req.getConnection(function(err, conn) {
-      if (err) return next("Cannot Connect");
+      if (err) return next(err);
 
 
       var srchstrlen = req.body["search[value]"].length;
@@ -64,7 +64,7 @@ exports.route_landing = (req, res, next) => {
 };
 exports.add = (req, res, next) => {
   req.getConnection(function(err, conn) {
-    if (err) return next("Cannot Connect");
+    if (err) return next(err);
 
     var validations = {
       user_fullname:
@@ -131,7 +131,7 @@ exports.add = (req, res, next) => {
 };
 exports.update = (req, res, next) => {
   req.getConnection(function(err, conn) {
-    if (err) return next("Cannot Connect");
+    if (err) return next(err);
 
     var validations = {
       user_fullname: req.body.fname + " " + req.body.lname + " " + req.body.mname,
@@ -153,7 +153,7 @@ exports.update = (req, res, next) => {
         [validations.user_fullname, validations.user_uname,validations.users_id],
         (err, result) => {
           if (err) return next("CONNECTIfON ERROR CHECK QUERY");
-          console.log(validations.users_id);
+
           if (result[0].userCount > 0) {
             res.send("error");
           } else {
@@ -196,7 +196,7 @@ exports.update = (req, res, next) => {
 };
 exports.login = (req, res, next) => {
   req.getConnection((err, conn) => {
-    if (err) return next("Cannot Connect");
+    if (err) return next(err);
 
     var user_data = {
       login_uname: req.body.uname,
@@ -248,7 +248,7 @@ exports.search = (req,res,next)=>{
     res.redirect("/");
   } else {
     req.getConnection(function(err, conn) {
-      if (err) return next("Cannot Connect");
+      if (err) return next(err);
       strquery = `SELECT * FROM vusers where users_id = ${req.body.uid}`;
  
       

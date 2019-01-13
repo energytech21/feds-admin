@@ -183,6 +183,7 @@ function editUser(users_id) {
   });
 }
 function setFormValidations(row) {
+
   $("#regform").form({
     inline: true,
     on: "blur",
@@ -297,7 +298,7 @@ function submitNewForm(){
   });
 }
 
-function setFormValidations() {
+function setNewFormValidations() {
   $('#regNewform').form({
       inline: true,
       on: 'blur',
@@ -351,7 +352,7 @@ function showNewRegister(){
   $('#registerNewModal').modal({
     closable: false,
     onApprove: function () {
-        setFormValidations();
+        setNewFormValidations();
         $('#regNewform').form('validate form');
         return false;
     },
