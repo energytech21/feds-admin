@@ -1,0 +1,136 @@
+<%- include('header.ejs'); %>
+<!-- side bar -->
+<div class="ui small sidebar inverted vertical left menu" id='sidebar' style="background: #7f0000;">
+    <div class="item" style="background: #8e0000">
+        <img src="../images/feds-poster.png" class="ui image tiny" alt="FEDS-POSTER">
+    </div>
+    <div class="item">
+        <div class="header">Status Monitoring</div>
+        <div class="menu">
+            <a class="item" href="/dashboard">Dashboard</a>
+            <a class="item" href="/device_history">Device Data History</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Campus Issued Reports</div>
+        <div class="menu">
+            <a class="item" href="/report">View Reports</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Accounts Management</div>
+        <div class="menu">
+            <a class="item" href="/AccountsManagement">Manage Accounts</a>
+        </div>
+    </div>
+
+
+    <div class="item">
+        <div class="header">Utilities</div>
+        <div class="menu">
+            <a class='item active' href='/config_alarm'>Alarm Configuration</a>
+            <a class='item' href='#'>User Logs</a>
+        </div>
+    </div>
+</div>
+<!-- end of sidebar -->
+
+<div class="pusher">
+    <!-- menu -->
+    <div class="ui inverted black top fixed large menu" id="top-navigation-bar">
+            <a class="item" onclick="toggle()">
+                <i class="angle bars icon"></i>
+            </a>
+            <a class="item" href="#" alt="" style="cursor: pointer;" id="fedsheader">
+                <div class="ui tiny image">
+                    <img src="../images/feds-poster.png">
+                </div>
+            </a>
+            <div class="header item">
+                    <%-title-%>
+            </div>
+            <div class="right menu">
+                <div class="ui pointing dropdown link item" id="bt-accset">
+                    <i class="ui center large user circle icon"></i>
+                    <div class="header"><b id="btn-logout-desc">Account</b></div>
+                    <div class="menu">
+                        <a class="item" href="/logout"><i class='sign out alternate icon'></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- content -->
+    <div class="ui celled stackable grid" id="dashboard-content">
+        <div class="row">
+            <div class='ui fluid wide column'>
+                <div class='ui segments'>
+                    <div class='ui top attatched yellow inverted segment'>
+                        <h1>Earthquake Alarm Calibration</h1>
+                    </div>
+                    <div class='ui horizontal segments'>
+                        <div class='ui segment'>
+                            <div class='ui medium header'>Earthquake Sensor Calibration</div>
+                            <form class="ui form" id='calibForm'>
+                                <div class="field">
+                                    <label>Horizontal Movement</label>
+                                    <input type="text" name='x' id="x" placeholder="Horizontal Movement" readonly>
+                                </div>
+                                <div class="field">
+                                    <label>Vertical Movement</label>
+                                    <input type="text" name='y' id="y" placeholder="Vertical Movement" readonly>
+                                </div>
+                                <div class="field">
+                                    <label>Diagonal Movement</label>
+                                    <input type="text" name='z' id="z" placeholder="Diagonal Movement" readonly>
+                                </div>
+                                <div class='two stackable ui fluid buttons'>
+                                    <div class="ui green button" onclick="calibrate()">Calibrate</div>
+                                    <div class='or'></div>
+                                    <div class="ui green button" onclick="saveCalibration()">Save</div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class='ui segment'>
+                            <div class='ui medium header'>Calibration Log</div>
+                            <div class='ui fluid form'>
+                                <div class='field'>
+                                    <textarea id='calLog'readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class='ui fluid wide column'>
+                <div class='ui segments'>
+                    <div class='ui top attatched blue inverted segment'>
+                        <h1>Alarm Message Settings</h1>
+                    </div>
+                    <div class='ui horizontal segments'>
+                        <div class='ui segment'>
+                            <form class="ui form" id='noticeForm'>
+                                <div class="field">
+                                    <label>Evacuation Notice Message</label>
+                                    <textarea name='evacNotice' id='evacNotice'></textarea>
+                                </div>
+                                <div class='stackable ui fluid buttons'>
+                                    <div class="ui green button" onclick="saveEvacNotice()">Save</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
+<%- include('footer.ejs'); %>

@@ -1,0 +1,29 @@
+<%- include('header.ejs'); %>
+<div class="ui stackable middle aligned grid">
+	<div class="row" style="margin: 1rem !important;">
+		<div class="center aligned  four wide column">
+			<div class="ui huge  header">
+					<i class="map marker alternate icon"></i>
+				<div class="content">
+					Select Floor Location
+				</div>
+			</div>
+		</div>
+		<div class="twelve wide column">
+			<div class="ui four huge fluid buttons" id="floorButtons">
+				<button  id="floor1" class="ui inverted green button">1st Floor</button>
+				<button  id="floor2" class="ui inverted brown button">2nd Floor</button>
+				<button  id="floor3" class="ui inverted orange button">3rd Floor</button>
+				<button  id="floor4" class="ui inverted blue button">Covered Court</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="sixteen wide column">
+			<div id="myMaps">
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('footer.ejs'); %>

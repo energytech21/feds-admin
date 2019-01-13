@@ -1,0 +1,140 @@
+<%- include('header.ejs'); %>
+<div class="ui small sidebar inverted vertical left menu" id='sidebar' style="background: #7f0000;">
+    <div class="item" style="background: #8e0000">
+        <img src="../images/feds-poster.png" class="ui image tiny" alt="FEDS-POSTER">
+    </div>
+    <div class="item">
+        <div class="header">Status Monitoring</div>
+        <div class="menu">
+            <a class="item active" href="/dashboard">Dashboard</a>
+            <a class="item" href="/device_history">Device Data History</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Campus Issued Reports</div>
+        <div class="menu">
+            <a class="item" href="/report">View Reports</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Accounts Management</div>
+        <div class="menu">
+            <a class="item" href="/AccountsManagement">Manage Accounts</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Utilities</div>
+        <div class="menu">
+            <a class='item' href='/config_alarm'>Alarm Configuration</a>
+            <a class='item' href='#'>User Logs</a>
+        </div>
+    </div>
+
+
+</div>
+<!-- end of sidebar -->
+<div class="pusher">
+    <!-- menu -->
+    <div class="ui inverted black top fixed large menu" id="top-navigation-bar">
+            <a class="item" onclick="toggle()">
+                <i class="angle bars icon"></i>
+            </a>
+            <a class="item" href="#" alt="" style="cursor: pointer;" id="fedsheader">
+                <div class="ui tiny image">
+                    <img src="../images/feds-poster.png">
+                </div>
+            </a>
+            <div class="header item">
+                    <%-title-%>
+            </div>
+            <div class="right menu">
+                <div class="ui pointing dropdown link item" id="bt-accset">
+                    <i class="ui center large user circle icon"></i>
+                    <div class="header"><b id="btn-logout-desc">Account</b></div>
+                    <div class="menu">
+                        <a class="item" href="/logout"><i class='sign out alternate icon'></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- content -->
+    <div class="ui divided grid container" id="dashboard-content">
+        <div class="centered row">
+            <div class="ui huge statistics">
+                <div class="statistic">
+                    <div class="value">
+                        <i class="exclamation triangle icon"></i> <span id="eq_stat">5%</span>
+                    </div>
+                    <div class="label">
+                        Earthquake Occurence Probabilty
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h1 class="ui header">Sensors Data</h1>
+                <div class="ui horizontal segments">
+
+                    <div class="ui segment">
+                        <h1 class="ui header">Smoke</h1>
+                        <table class="ui selectable inverted grey table">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Data (PPM Particle Per Million)</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id='tSmoke'>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ui segment">
+                        <h1 class="ui header">Temperature</h1>
+                        <table class="ui selectable inverted grey table">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Data (Celsius)</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id='tTemp'>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="fluid wide column">
+                <div class="ui raised segment">
+                    <div id="EQChart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Maps -->
+        <div class="row">
+            <div class="fluid wide column">
+                <div class="ui raised segment">
+                    <h1 class="header">Sensors Map</h1>
+                    <div class="ui tabular top center stackable menu">
+                        <a class="active red item" data-tab="GF"><i class="icon location arrow"></i>Ground Floor</a>
+                        <a class=" red item" data-tab="2F"><i class="icon location arrow"></i>Second Floor</a>
+                        <a class=" red item" data-tab="3F"><i class="icon location arrow"></i>Third Floor</a>
+                        <a class=" red item" data-tab="GYM"><i class="icon location arrow"></i>Gymnasium</a>
+                    </div>
+                    <%- include('map-tabs.ejs'); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer.ejs'); %>

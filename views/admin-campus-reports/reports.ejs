@@ -1,0 +1,102 @@
+<%- include('header.ejs'); %>
+
+<div class="ui small sidebar inverted vertical left menu" id='sidebar' style="background: #7f0000;">
+    <div class="item" style="background: #8e0000">
+        <img src="../images/feds-poster.png" class="ui image tiny" alt="FEDS-POSTER">
+    </div>
+    <div class="item">
+        <div class="header">Status Monitoring</div>
+        <div class="menu">
+            <a class="item" href="/dashboard">Dashboard</a>
+            <a class="item" href="/device_history">Device Data History</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Campus Issued Reports</div>
+        <div class="menu"> <a class="item active" href="/report">View Reports</a>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="header">Accounts Management</div>
+        <div class="menu">
+            <a class="item" href="/AccountsManagement">Manage Accounts</a>
+        </div>
+    </div>
+
+
+    <div class="item">
+        <div class="header">Utilities</div>
+        <div class="menu">
+            <a class='item' href='/config_alarm'>Alarm Configuration</a>
+            <a class='item' href='#'>User Logs</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="pusher">
+    <!-- menu -->
+    <div class="ui inverted black top fixed large menu" id="top-navigation-bar">
+        <a class="item" onclick="toggle()">
+            <i class="angle bars icon"></i>
+        </a>
+        <a class="item" href="#" alt="" style="cursor: pointer;" id="fedsheader">
+            <div class="ui tiny image">
+                <img src="../images/feds-poster.png">
+            </div>
+        </a>
+        <div class="header item">
+            Campus Reports
+        </div>
+        <div class="right menu">
+            <div class="ui pointing dropdown link item" id="bt-accset">
+                <i class="ui center large user circle icon"></i>
+                <div class="header"><b id="btn-logout-desc">Account</b></div>
+                <div class="menu">
+                    <a class="item" href="/logout"><i class='sign out alternate icon'></i>Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- content -->
+
+    <div class="ui celled stackable equal width grid">
+        <div class="row">
+            <div class="fluid wide column">
+                <div class='ui raised segment'>
+
+                    <h1 class='ui attatched header'>View Reports
+                    </h1>
+                    <table class="ui selectable celled small compact table" id='reports' data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th>Sender</th>
+                                <th>Location</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Sender</th>
+                                <th>Location</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('footer.ejs'); %>

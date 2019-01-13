@@ -1,0 +1,23 @@
+<%- include('header.ejs'); %>
+    <div class="wrapper">
+    
+        <div class="ui container">
+            <div class="ui four column inverted centered segment">
+                <form class="ui two column inverted centered form" id="login-form">
+                    <h1 class="ui inverted dividing header">FEDS Admin Login</h1>
+                    <div class="field">
+                        <label>Username</label>
+                        <input type="text" name="uname">
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <input type="password" name="pword">
+                    </div>
+                    <div class="ui centered two column container">
+                        <div class="fluid ui green button" onclick="setLoginFormValidation()" id='btn-login'>Login</div>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+<%- include('footer.ejs'); %>
