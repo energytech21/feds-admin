@@ -30,14 +30,15 @@ exports.list = (req, res, next) => {
             users_id: e.users_id,
             user_fullname : e.user_fullname,
             address : e.address,
-            dateCreated : req.moment(e.dateCreated).format("DD-MM-YYYY hh:mm:ss A"),
+            dateCreated : req.moment.tz(e.dateCreated,'Asia/Manila').format("DD-MM-YYYY hh:mm:ss A"),
             status : e.status
           }
           ;
           parsedData.push(rowdata);
         });
 
-        parsedData = parsedData.slice(req.body.start,req.body.start+req.body.length);
+        var endIndex = parseInt(req.body.start)+parseInt(req.body.length);
+        parsedData = parsedData.slice(req.body.start,endIndex);
 
         var data = {
           draw: req.body.draw,
@@ -282,8 +283,8 @@ exports.report = (req,res,next)=>{
       if (err) return next(err);
 
       conn.query(
-        "insert into data_reports set ?",
-        report_data,
+        "insert into data_reports (location_id,createdBy,details,createdOn) values (?,?,?,UNIX_TIMESTAMP())",
+        [report_data.location_id,report_data.createdBy,report_data.details],
         (err, result) => {
           if (err) return next("CONNECTION ERROR CHECK QUERY");
 
@@ -346,11 +347,13 @@ exports.getReports = (req, res, next) => {
             createdBy : e.createdBy,
             details : e.details,
             location : e.location,
-            createdOn :  req.moment(e.createdOn).format("DD-MM-YYYY hh:mm:ss A")}
+            createdOn :  req.moment.tz(e.createdOn,'Asia/Manila').format("DD-MMM-YYYY hh:mm:ss A")}
           ;
           parsedData.push(rowdata);
         });
-        parsedData = parsedData.slice(req.body.start,req.body.start+req.body.length);
+        var endIndex = parseInt(req.body.start)+parseInt(req.body.length);
+        parsedData = parsedData.slice(req.body.start,endIndex);
+
         var result = {
           "draw": req.body.draw,
           "recordsFiltered": rows.length,

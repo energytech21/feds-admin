@@ -4,6 +4,7 @@ const path = require('path');
 const validator = require('express-validator');
 var favicon = require('serve-favicon');
 var moment = require('moment');
+var moment_tz = require('moment-timezone');
 var howl = require('howler');
 const mysql = require('mysql'),
     connection = require('express-myconnection'),
@@ -62,6 +63,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(function (req, res, next) {
     req.io = io;
     req.moment = moment;
+    req.moment.tz = moment_tz;
     next();
 });
 
