@@ -283,8 +283,8 @@ exports.report = (req,res,next)=>{
       if (err) return next(err);
 
       conn.query(
-        "insert into data_reports (location_id,createdBy,details,createdOn) values (?,?,?,UNIX_TIMESTAMP())",
-        [report_data.location_id,report_data.createdBy,report_data.details],
+        "insert into data_reports (location_id,createdBy,details,createdOn) values (?,?,?,?)",
+        [report_data.location_id,report_data.createdBy,report_data.details,req.moment().tz("Asia/Manila").format()],
         (err, result) => {
           if (err) return next("CONNECTION ERROR CHECK QUERY");
 
