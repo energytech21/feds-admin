@@ -70,7 +70,7 @@ var DELAY = 500,
 	};
 
 	$.fn.wayfinding = function (action, options) {
-
+		
 		var passed = options,
 			dataStore = {
 				'paths': [],
@@ -583,7 +583,7 @@ var DELAY = 500,
 
 		function loadMaps(target) {
 			var processed = 0;
-
+			
 			$.each(maps, function (i, floor) {
 				//create div to put map in, disconnected from DOM for performance reasons
 				var targetFloor = $('<div id="' + floor.id + '"><\/div>');
@@ -616,7 +616,50 @@ var DELAY = 500,
 					}
 				);
 			});
-		} // function loadMaps
+		}
+		function reloadMap(target,roomName) {
+			var processed = 0;
+			target.empty();
+			$.each(maps, function (i, floor) {
+
+				//create div to put map in, disconnected from DOM for performance reasons
+				var targetFloor = $('<div id="' + floor.id + '"><\/div>');
+			
+				//create svg in that div
+				targetFloor.load(
+					floor.path,
+					function (svg) {
+						//get handle for that svg
+						processed = processed + 1;
+						maps[i].svgHandle = svg;
+						cleanupSVG(target, targetFloor);
+
+					
+						target.append(this);
+
+						if (!options.dataStoreCache) {
+							$.each(roomName,(i,item)=>{
+								$(`line[id*="P${item}"]`).remove();
+							});
+							
+						
+							finishFloor(target, i, floor);
+						// rather than checking if we have processed the last map in order, this checks if we have processed the right number of maps
+							if (processed === maps.length) {
+								buildPortals();
+							}
+						}
+
+						if (processed === maps.length) {
+							setStartPoint(options.startpoint, target);
+							setOptions(target);
+							replaceLoadScreen(target);
+						}
+					}
+				);
+			});
+		}
+		 // function loadMaps
 
 		//initialize the jQuery target object
 		function initialize(target) {
@@ -994,8 +1037,6 @@ var DELAY = 500,
 
 				solution = getShortestRoute(destination).solution;
 
-
-				console.log(solution);
 				if (reversePathStart !== -1) {
 
 					portalsEntered = 0;
@@ -1292,13 +1333,14 @@ var DELAY = 500,
 		// for each jQuery target object
 		this.each(function () {
 
-
 			// store reference to the currently processing jQuery object
 			obj = $(this);
 
+	
+
 			getOptions(obj); // load the current options
 
-//          console.log("options loaded: ", action, passed, options);
+     //    	console.log("options loaded: ", action, passed, options);
 
 			//handle actions
 			if (action && typeof (action) === 'string') {
@@ -1370,6 +1412,9 @@ var DELAY = 500,
 					} else {
 						result = getShortestRoute(passed);
 					}
+					break;
+				case 'removepath':
+					reloadMap(obj,passed);
 					break;
 				case 'destroy':
 					//remove all traces of wayfinding from the obj

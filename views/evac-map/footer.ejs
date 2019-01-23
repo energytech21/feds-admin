@@ -3,6 +3,11 @@
 <script src="../scripts/flash-messages.js"></script>
 
 <script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    var removedPaths = [];
+
+    var isAlarming = false;
     // Variables for wayfinding
     var MAPS = [
         { 'path': '../images/map-images/firstfloor.svg', 'id': 'floor1' },
@@ -18,23 +23,55 @@
         $('#myMaps').wayfinding({
             'maps': MAPS,
             'path': {
-                width: 50,
+                width: 5,
                 color: 'red',
                 radius: 20,
-                speed: 1
+                speed: 3
             },
             'defaultMap': DEFAULT_MAP
         });
 
-        $("#floorButtons button").on('click',(e)=>{
+        $("#floorButtons button").on('click', (e) => {
             var id = $(e.target).attr('id');
-            $("#myMaps").wayfinding('currentMap',id);
+            $("#myMaps").wayfinding('currentMap', id);
         })
+        
+
+
+        socket.on('alarm/smoke', (sensor_data) => {
+            if(!removedPaths.includes(sensor_data.location)){
+                removedPaths.push(sensor_data.location);
+                $('#myMaps').wayfinding('removepath', removedPaths);
+                notice("Route Updated");
+            }
+        });
+
+        socket.on('alarm/temp', (sensor_data) => {
+            if(!removedPaths.includes(sensor_data.location)){
+                removedPaths.push(sensor_data.location);
+                $('#myMaps').wayfinding('removepath', removedPaths);
+                notice("Route Updated");
+            }
+        });
+
+        var resetCount = 60;
+        setInterval(() => {
+
+            $('#resetCount').html(resetCount);
+           
+            if(resetCount == 0){
+                removedPaths = [];
+                $('#myMaps').wayfinding('removepath', removedPaths);
+                notice("Route Updated");
+                resetCount = 30;
+            }
+
+            resetCount --;
+         
+        }, 1000);
+
     });
 
-
-  
-    
 
 </script>
 

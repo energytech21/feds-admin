@@ -6,7 +6,7 @@ function messageSucess(message) {
     textcolor: "#fff",
     position: "top-left",
     icon: "checkmark box",
-    time: 1
+    time: 3
   });
 }
 
@@ -18,7 +18,7 @@ function messageFailure(message) {
     textcolor: "#fff",
     position: "top-left",
     icon: "remove circle",
-    time: 1
+    time: 3
   });
 }
 
@@ -30,7 +30,7 @@ function messageWarning(message) {
     textcolor: "#fff", // color
     position: "top-left", // position . top And bottom ||  left / center / right
     icon: "warning sign", // icon in semantic-UI
-    time: 1 // time
+    time: 3 // time
   });
 }
 
@@ -43,6 +43,18 @@ function messageArrived() {
     textcolor: "#fff",
     position: "top-left",
     icon: "envelope open outline box",
-    time: 1
+    time: 3
+  });
+}
+
+function notice(message) {
+  $.uiAlert({
+    textHead: "Info", // header
+    text: message, // Text
+    bgcolor: "#2196F3", // background-color
+    textcolor: "#fff", // color
+    position: "top-left", // position . top And bottom ||  left / center / right
+    icon: "exclamation circle", // icon in semantic-UI
+    time: 3 // time
   });
 }

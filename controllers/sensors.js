@@ -5,14 +5,12 @@ exports.post_sensors = (req, res, next) => {
             sensor_type: req.body.sensor_type,
             location: req.body.location
         };
-        var loc_id = 0;
-        if (sensor_data.location == "Faculty") {
-            loc_id = 1;
-        }
-        if (sensor_data.location == "AVR") {
-            loc_id = 2;
-        }
+        let loc_id = 0;
 
+        conn.query("select * from vlocations where location = ?",[sensor_data.location],(err,result)=>{
+            loc_id = result[0].location_id;
+        });
+      
         conn.beginTransaction((err) => {
             if (sensor_data.sensor_type == "smoke") {
                 conn.query("select * from config_alarm where sensor_type = ?", [sensor_data.sensor_type], (err, result) => {
@@ -29,6 +27,7 @@ exports.post_sensors = (req, res, next) => {
                         req.io.emit('alarm/smoke', sensor_data);
                     }
                 });
+                
                 conn.query("insert into sensors_smoke (data,location_id,time) values (?,?,?)", [sensor_data.data, loc_id,req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
                     if (err) return next("CONNECTION ERROR CHECK QUERY");
 
