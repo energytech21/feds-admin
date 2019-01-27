@@ -284,11 +284,6 @@ exports.get_sensors_data = (req, res, next) => {
                         table_data.time.push(req.moment(item.time).format("DD-MM-YYYY hh:mm:ss A"));
                     });
 
-                    var magnitude_data = [];
-
-                    for (var i = 0; i < result.length(); i++) {
-                        console.log(result[i]);
-                    }
 
                     conn.commit(function (err) {
                         if (err) {
@@ -342,7 +337,6 @@ exports.get_probability = (req, res, next) => {
         conn.query("select * from sensors_earthquake where CAST(`time` AS date) between CAST( ? AS DATE) and CAST( ? AS DATE) order by `time`",[last_sevendays.format("YYYY-MM-DD"),today.format("YYYY-MM-DD")],(err, result) => {
             if (err) return next("CONNECTION ERROR CHECK QUERY");
 
-            console.log(result.length);
             var magnitude_data = {
                 data: [],
                 probability: 0
