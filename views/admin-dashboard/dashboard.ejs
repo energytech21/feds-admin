@@ -66,7 +66,7 @@
             <div class="ui huge statistics">
                 <div class="statistic">
                     <div class="value">
-                        <i class="exclamation triangle icon"></i> <span id="eq_stat">5%</span>
+                        <i class="exclamation triangle icon"></i> <span id="eq_stat">5</span>%
                     </div>
                     <div class="label">
                         Earthquake Occurence Probabilty
@@ -124,13 +124,9 @@
             <div class="fluid wide column">
                 <div class="ui raised segment">
                     <h1 class="header">Sensors Map</h1>
-                    <div class="ui tabular top center stackable menu">
-                        <a class="active red item" data-tab="GF"><i class="icon location arrow"></i>Ground Floor</a>
-                        <a class=" red item" data-tab="2F"><i class="icon location arrow"></i>Second Floor</a>
-                        <a class=" red item" data-tab="3F"><i class="icon location arrow"></i>Third Floor</a>
-                        <a class=" red item" data-tab="GYM"><i class="icon location arrow"></i>Gymnasium</a>
+                    <div id="map_container">
+
                     </div>
-                    <%- include('map-tabs.ejs'); %>
                 </div>
             </div>
         </div>

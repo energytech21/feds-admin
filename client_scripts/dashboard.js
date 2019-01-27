@@ -15,6 +15,12 @@ function showTempModal() {
 };
 
 $(document).ready(function () {
+
+    
+    $('#map_container').load('../map');
+    setInterval(()=>{
+        $.get('sensors/probability');
+    },1000);
     // Connect to our node/websockets server
     var socket = io.connect('http://' + document.domain + ':' + location.port);
 
@@ -48,26 +54,18 @@ $(document).ready(function () {
     });
 
     socket.on('earth/sensor', function (data) {
-        relayout(data.x_data, data.y_data, data.z_data);
+        relayout(data.x_data, data.y_data);
     });
 
+    socket.on('earth/probability',(data)=>{
+        $("#eq_stat").html(data);
+    })
     socket.on('alarm/smoke', (sensor_data) => {
-        if (sensor_data.location == "AVR") {
-            alert_smoke_avr();
-        }
-        if (sensor_data.location == "Faculty") {
-            console.log(sensor_data);
-            alert_smoke_fac();
-        }
+        
     });
 
     socket.on('alarm/temp', (sensor_data) => {
-        if (sensor_data.location == "AVR") {
-            alert_temp_avr();
-        }
-        if (sensor_data.location == "Faculty") {
-            alert_temp_fac();
-        }
+     
     });
 });
 
@@ -97,103 +95,3 @@ $.ajax({
     }
 });
 
-function alert_temp_avr() {
-    var coord = $('#avr_fire').attr('coords').split(',');
-
-    if ($("#image").width() == undefined) {
-        var x = document.createElement("IMG");
-
-        x.setAttribute("src", "../images/fire.png");
-        x.setAttribute("width", "50");
-        x.setAttribute("height", "50");
-        x.id = 'image';
-        $('#img-container').append(x);
-
-    }
-    $('#image').css({
-        position: "absolute",
-        left: parseInt(coord[0]),
-        top: parseInt(coord[1]),
-        zIndex: 1
-    });
-
-    $('#image')
-        .transition('set looping')
-        .transition('bounce', '1000ms')
-        ;
-}
-function alert_smoke_avr() {
-    var coordy = $('#avr_smoke').attr('coords').split(',');
-    if ($("#imagey").width() == undefined) {
-
-        var y = document.createElement("IMG");
-        y.setAttribute("src", "../images/smoke.png");
-        y.setAttribute("width", "50");
-        y.setAttribute("height", "50");
-        y.id = 'imagey';
-        $('#img-container').append(y);
-    }
-
-
-    $('#imagey').css({
-        position: "absolute",
-        left: parseInt(coordy[0]),
-        top: parseInt(coordy[1]),
-        zIndex: 1
-    });
-
-    $('#imagey')
-    .transition('set looping')
-    .transition('bounce', '1000ms')
-    ;
-}
-
-function alert_temp_fac() {
-    var coord = $('#fac_fire').attr('coords').split(',');
-
-    if ($("#imagefx").width() == undefined) {
-        var x = document.createElement("IMG");
-
-        x.setAttribute("src", "../images/fire.png");
-        x.setAttribute("width", "50");
-        x.setAttribute("height", "50");
-        x.id = 'imagefx';
-        $('#img-container').append(x);
-
-    }
-    $('#imagefx').css({
-        position: "absolute",
-        left: parseInt(coord[0]),
-        top: parseInt(coord[1]),
-        zIndex: 1
-    });
-    $('#imagefx')
-    .transition('set looping')
-    .transition('bounce', '1000ms')
-    ;
-
-}
-function alert_smoke_fac() {
-    var coordy = $('#fac_smoke').attr('coords').split(',');
-    if ($("#imagefy").width() == undefined) {
-        var y = document.createElement("IMG");
-        y.setAttribute("src", "../images/smoke.png");
-        y.setAttribute("width", "50");
-        y.setAttribute("height", "50");
-        y.id = 'imagefy';
-        $('#img-container').append(y);
-    }
-
-
-
-    $('#imagefy').css({
-        position: "absolute",
-        left: parseInt(coordy[0]),
-        top: parseInt(coordy[1]),
-        zIndex: 1
-    });
-    $('#imagefy')
-    .transition('set looping')
-    .transition('bounce', '1000ms')
-    ;
-}

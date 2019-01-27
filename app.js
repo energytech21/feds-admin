@@ -11,7 +11,7 @@ const mysql = require('mysql'),
     config = {
         host: 'localhost',
         user: 'root',
-        password: '1234',
+        password: 'root',
         database: 'fedsdb',
         debug: false
     };

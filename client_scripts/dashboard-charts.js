@@ -16,17 +16,11 @@ function loadChart() {
     mode: 'lines'
   };
 
-  var z_axis = {
-    name: "Diagonal Movement",
-    x: [d.toLocaleString()],
-    y: [0],
-    mode: 'lines'
-  };
 
-  var data = [x_axis, y_axis, z_axis];
+  var data = [x_axis, y_axis];
 
   var layout = {
-    title: 'Earthquake Vibration Data',
+    title: 'Earthquake Movement Data',
     xaxis: {
       title: 'Time',
       showgrid: false,
@@ -44,13 +38,13 @@ function loadChart() {
   Plotly.newPlot('EQChart', data, layout);
 }
 var count = 0;
-function relayout(x_data, y_data, z_data) {
+function relayout(x_data, y_data) {
   count++;
   var d = new Date().toLocaleString();
   Plotly.extendTraces('EQChart', {
-    y: [[x_data], [y_data], [z_data]],
-    x: [[d],[d],[d]]
-  }, [0, 1,2]);
+    y: [[x_data], [y_data]],
+    x: [[d],[d]]
+  }, [0, 1]);
 
   /*if(count>=5 ){
     Plotly.relayout('EQChart',{
