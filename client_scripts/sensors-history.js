@@ -60,13 +60,7 @@ function loadGraph(targetChart,data){
       type: 'line',
       name: 'Vertical Movement'
     };
-    var trace3 = {
-      x: data.time,
-      y: data.z_trace,
-      type: 'line',
-      name: 'Diagonal Movement'
-    };
-    lines = [trace1,trace2,trace3];
+    lines = [trace1,trace2];
   }
   else{
     var trace1 = {

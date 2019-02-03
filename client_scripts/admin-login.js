@@ -12,7 +12,11 @@ $(document).ready(function () {
             }
         }).modal('show','refresh');
     });
-    
+    $('input').on('keypress',(e)=>{
+        if(e.which === 13){
+            setLoginFormValidation();
+        }
+    })
 });
 
 function setFormValidations() {

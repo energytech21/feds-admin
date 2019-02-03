@@ -54,22 +54,6 @@
             }
         });
 
-        var resetCount = 60;
-        setInterval(() => {
-
-            $('#resetCount').html(resetCount);
-           
-            if(resetCount == 0){
-                removedPaths = [];
-                $('#myMaps').wayfinding('removepath', removedPaths);
-                notice("Route Updated");
-                resetCount = 30;
-            }
-
-            resetCount --;
-         
-        }, 1000);
-
     });
 
 

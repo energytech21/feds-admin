@@ -120,49 +120,49 @@
 	<rect x="210" y="85.7" width="29.5" height="1"/>
 </g>
 <g id="Rooms">
-	<a id="Library" xlink:href="#myMaps" >
+	<a id="Library" xlink:href="#mapArea" >
 		<g>
 			<polygon fill="#FFFFFF" points="3,180.3 44.3,180.3 44.3,198.7 114.5,198.7 114.5,253.4 72.5,253.4 72.5,263.9 3,263.9 			"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M68.5,198.7v17.2c0,0-19.4-2.8-19.4-17.2"/>
 		</g>
 	</a>
-	<a id="OldAcadOffice" xlink:href="#myMaps" >
+	<a id="OldAcadOffice" xlink:href="#mapArea" >
 		<g>
 			<rect x="3.1" y="145.2" fill="#FFFFFF" width="9.7" height="34.3"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M12.7,159.5H6.2c0,0,2.4,5.8,6.5,6.1"/>
 		</g>
 	</a>
-	<a id="RM205A" xlink:href="#myMaps" >
+	<a id="RM205A" xlink:href="#mapArea" >
 		<g>
 			<rect x="3.2" y="106.6" fill="#FFFFFF" width="41" height="37.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M44.2,142.9h-5.8c0,0,0.1-6.2,5.8-5.9"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M44.2,109.4h-5.8c0,0,0.1,5.7,5.8,6"/>
 		</g>
 	</a>
-	<a id="RM206A" xlink:href="#myMaps" >
+	<a id="RM206A" xlink:href="#mapArea" >
 		<g>
 			<rect x="3.1" y="68" fill="#FFFFFF" width="41.1" height="37.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M44.2,102.5h-5.8c0,0-0.4-5.9,5.8-5.8"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M44.2,68.8h-5.8c0,0,0.4,5.8,5.8,6"/>
 		</g>
 	</a>
-	<a id="UtilityRoom2" xlink:href="#myMaps" >
+	<a id="UtilityRoom2" xlink:href="#mapArea" >
 		<g>
 			<rect x="3.1" y="54.5" fill="#FFFFFF" width="30.5" height="12.3"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M33.6,57.3H27c0,0,0.5,5.6,6.6,6.3"/>
 		</g>
 	</a>
-	<a id="MaleCR2A" xlink:href="#myMaps" >
+	<a id="MaleCR2A" xlink:href="#mapArea" >
 		<g>
 			<rect x="3.1" y="36.3" fill="#FFFFFF" width="30.5" height="17.2"/>
 		</g>
 	</a>
-	<a id="FemaleCR2A" xlink:href="#myMaps" >
+	<a id="FemaleCR2A" xlink:href="#mapArea" >
 		<g>
 			<rect x="3.1" y="18.9" fill="#FFFFFF" width="30.5" height="16.4"/>
 		</g>
 	</a>
-	<a id="TechLab" xlink:href="#myMaps" >
+	<a id="TechLab" xlink:href="#mapArea" >
 		<g>
 			<rect x="73.5" y="106.6" fill="#FFFFFF" width="41.1" height="91"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M73.5,197.2h7.7c0,0-1-6.4-7.7-6.2"/>
@@ -171,121 +171,121 @@
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M73.5,107.4h5.8c0,0,0.2,6.1-5.8,6"/>
 		</g>
 	</a>
-	<a id="RM204A" xlink:href="#myMaps" >
+	<a id="RM204A" xlink:href="#mapArea" >
 		<g>
 			<rect x="73.5" y="68" fill="#FFFFFF" width="41.1" height="37.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M73.5,104.5h5.8c0,0,0-5.2-5.8-5.9"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M73.5,68.9h5.8c0,0-0.6,6-5.8,5.8"/>
 		</g>
 	</a>
-	<a id="Bookstore" xlink:href="#myMaps" >
+	<a id="Bookstore" xlink:href="#mapArea" >
 		<g>
 			<rect x="163.2" y="148" fill="#FFFFFF" width="32.5" height="55.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M164.7,148v9.2c0,0,8.1-1.1,8.7-9.2"/>
 		</g>
 	</a>
-	<a id="BesideBookstore" xlink:href="#myMaps" >
+	<a id="BesideBookstore" xlink:href="#mapArea" >
 		<g>
 			<rect x="179" y="137.5" fill="#FFFFFF" width="16.5" height="8.9"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M180.2,137.5v6.2c0,0,8.7,0.7,8.9-6.2"/>
 		</g>
 	</a>
-	<a id="RM211B" xlink:href="#myMaps" >
+	<a id="RM211B" xlink:href="#mapArea" >
 		<g>
 			<rect x="196.8" y="137.5" fill="#FFFFFF" width="54.9" height="66"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M199.4,137.5v10.2c0,0,10.1-1.9,10.1-10.2"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M249.7,137.5v10.2c0,0-10.7-1.4-10.2-10.2"/>
 		</g>
 	</a>
-	<a id="RM210B" xlink:href="#myMaps" >
+	<a id="RM210B" xlink:href="#mapArea" >
 		<g>
 			<rect x="196.9" y="19.1" fill="#FFFFFF" width="54.6" height="66.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M249.5,85.6V75.3c0,0-10.2,0.7-10.1,10.3"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M199.4,85.6V75.3c0,0,10.8,0.8,10.5,10.3"/>
 		</g>
 	</a>
-	<a id="RM209B" xlink:href="#myMaps" >
+	<a id="RM209B" xlink:href="#mapArea" >
 		<g>
 			<rect x="253.7" y="137.5" fill="#FFFFFF" width="57" height="66"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M255.5,137.5v10.2c0,0,10.8-0.6,10.3-10.2"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M308.8,137.5v10.2c0,0-10.3,0-10.3-10.2"/>
 		</g>
 	</a>
-	<a id="RM208B" xlink:href="#myMaps" >
+	<a id="RM208B" xlink:href="#mapArea" >
 		<g>
 			<rect x="253.5" y="19.1" fill="#FFFFFF" width="57.3" height="66.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M308.7,85.6V75.3c0,0-10.2,2.5-10.2,10.2"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M255.3,85.6V75.3c0,0,10.5,2.2,10.3,10.3"/>
 		</g>
 	</a>
-	<a id="RM207B" xlink:href="#myMaps" >
+	<a id="RM207B" xlink:href="#mapArea" >
 		<g>
 			<rect x="312.5" y="137.5" fill="#FFFFFF" width="57.8" height="66.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M314.9,137.5v10.2c0,0,10.7-0.6,10.2-10.2"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M368.2,137.5v10.2c0,0-10.1-0.6-10.2-10.2"/>
 		</g>
 	</a>
-	<a id="RM206B" xlink:href="#myMaps" >
+	<a id="RM206B" xlink:href="#mapArea" >
 		<g>
 			<rect x="312.7" y="19.1" fill="#FFFFFF" width="57" height="66.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M368.3,85.6V75.3c0,0-10.6,1.4-10.2,10.3"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M314.7,85.6V75.3c0,0,10.8,1.6,10.4,10.3"/>
 		</g>
 	</a>
-	<a id="RM205B" xlink:href="#myMaps" >
+	<a id="RM205B" xlink:href="#mapArea" >
 		<g>
 			<rect x="371.8" y="137.5" fill="#FFFFFF" width="57.9" height="66.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M374.3,137.5v10.2c0,0,10.2-0.9,10.4-10.2"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M427.4,137.5v10.2c0,0-10.4-1-10-10.2"/>
 		</g>
 	</a>
-	<a id="RM204B" xlink:href="#myMaps" >
+	<a id="RM204B" xlink:href="#mapArea" >
 		<g>
 			<rect x="371.9" y="19.1" fill="#FFFFFF" width="58" height="66.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M427.5,85.6V75.3c0,0-10.5,1.4-10.1,10.3"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M374.1,85.6V75.3c0,0,10.3,1.5,10.4,10.3"/>
 		</g>
 	</a>
-	<a id="RM203B" xlink:href="#myMaps" >
+	<a id="RM203B" xlink:href="#mapArea" >
 		<g>
 			<rect x="431" y="137.5" fill="#FFFFFF" width="57.9" height="66.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M433.6,137.5v10.2c0,0,10-2.2,10.1-10.2"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M482.7,137.5V148c0,0-10-0.7-10.1-10.5"/>
 		</g>
 	</a>
-	<a id="RM202B" xlink:href="#myMaps" >
+	<a id="RM202B" xlink:href="#mapArea" >
 		<g>
 			<rect x="431.5" y="19.1" fill="#FFFFFF" width="57.1" height="66.6"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M486.9,85.6V75.3c0,0-10,3-10.3,10.3"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M433,85.6V75.3c0,0,10.9,1.6,10.6,10.3"/>
 		</g>
 	</a>
-	<a id="RM201B" xlink:href="#myMaps" >
+	<a id="RM201B" xlink:href="#mapArea" >
 		<g>
 			<rect x="490.3" y="137.5" fill="#FFFFFF" width="58.1" height="66.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M495.1,137.5V148c0,0,10.2-1.2,10.2-10.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M545.9,137.5V148c0,0-10.6-2.2-10.2-10.5"/>
 		</g>
 	</a>
-	<a id="Guidance2" xlink:href="#myMaps" >
+	<a id="Guidance2" xlink:href="#mapArea" >
 		<g>
 			<rect x="572.8" y="86.8" fill="#FFFFFF" width="35.2" height="49.5"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M572.8,108.8H585c0,0-1.3-11.4-12.2-10.9"/>
 		</g>
 	</a>
-	<a id="TestingRoom" xlink:href="#myMaps" >
+	<a id="TestingRoom" xlink:href="#mapArea" >
 		<g>
 			<polygon fill="#FFFFFF" points="549.6,20.2 549.6,85.6 607.2,85.6 			"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M552.2,85.6v-9.9c0,0,10.2,1.7,10.2,9.9"/>
 		</g>
 	</a>
-	<a id="TestingRoom_1_" xlink:href="#myMaps" >
+	<a id="TestingRoom_1_" xlink:href="#mapArea" >
 		<g>
 			<polygon id="MaleCR2B" fill="#FFFFFF" points="490.1,52.8 517.8,52.8 517.8,63.2 531.6,63.2 531.6,85.6 490.1,85.6 			"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M530.5,63.2v7.3c0,0-7.5,0.3-7.7-7.3"/>
 		</g>
 	</a>
-	<a id="FemaleCR2B" xlink:href="#myMaps" >
+	<a id="FemaleCR2B" xlink:href="#mapArea" >
 		<g>
 			<polygon fill="#FFFFFF" points="517.8,51.7 490.1,51.7 490.1,18.7 531.6,18.7 531.6,43.2 517.8,43.2 			"/>
 			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M530.5,43.2v-7.9c0,0-7.1-0.5-7.7,7.9"/>

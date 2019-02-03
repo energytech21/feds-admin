@@ -3,6 +3,11 @@ $(document).ready(() => {
         .dropdown({
             useLabels: false
         });
+    $('.ui.sticky')
+        .sticky({
+            context: '#stickyDiv'
+        })
+        ;
 });
 
 $('.top.menu .item').tab();
@@ -16,18 +21,11 @@ function showTempModal() {
 
 $(document).ready(function () {
 
-    
-    $('#map_container').load('../map');
-    setInterval(()=>{
+    setInterval(() => {
         $.get('sensors/probability');
-    },1000);
-    // Connect to our node/websockets server
-    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    }, 1000);
 
-    // New socket connected, display new count on page
-    socket.on('users connected', function (data) {
-        console.log('Users connected: ' + data);
-    });
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
 
     socket.on('smoke/sensor/Faculty', function (data) {
         $("#smoke_sensor_data_FAC").html(data.data);
@@ -57,16 +55,59 @@ $(document).ready(function () {
         relayout(data.x_data, data.y_data);
     });
 
-    socket.on('earth/probability',(data)=>{
+    socket.on('earth/probability', (data) => {
         $("#eq_stat").html(data);
     })
-    socket.on('alarm/smoke', (sensor_data) => {
-        
+
+    var removedPaths = [];
+    // Variables for wayfinding
+    var MAPS = [
+        { 'path': '../images/map-images/firstfloor.svg', 'id': 'floor1' },
+        { 'path': '../images/map-images/secondfloor.svg', 'id': 'floor2' },
+        { 'path': '../images/map-images/thirdfloor.svg', 'id': 'floor3' }
+    ];
+
+    var DEFAULT_MAP = 'floor3';
+
+    //Setup options for wayfinding
+    $(document).ready(function () {
+        'use strict';
+        $('#myMaps').wayfinding({
+            'maps': MAPS,
+            'path': {
+                width: 5,
+                color: 'red',
+                radius: 20,
+                speed: 3
+            },
+            'defaultMap': DEFAULT_MAP
+        });
+
+        $("#floorButtons button").on('click', (e) => {
+            var id = $(e.target).attr('id');
+            $("#myMaps").wayfinding('currentMap', id);
+        })
+
+
+
+        socket.on('alarm/smoke', (sensor_data) => {
+            if (!removedPaths.includes(sensor_data.location)) {
+                removedPaths.push(sensor_data.location);
+                $('#myMaps').wayfinding('removepath', removedPaths);
+                notice("Route Updated");
+            }
+        });
+
+        socket.on('alarm/temp', (sensor_data) => {
+            if (!removedPaths.includes(sensor_data.location)) {
+                removedPaths.push(sensor_data.location);
+                $('#myMaps').wayfinding('removepath', removedPaths);
+                notice("Route Updated");
+            }
+        });
+
     });
 
-    socket.on('alarm/temp', (sensor_data) => {
-     
-    });
 });
 
 $.ajax({
