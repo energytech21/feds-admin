@@ -64,7 +64,8 @@ $(document).ready(function () {
     var MAPS = [
         { 'path': '../images/map-images/firstfloor.svg', 'id': 'floor1' },
         { 'path': '../images/map-images/secondfloor.svg', 'id': 'floor2' },
-        { 'path': '../images/map-images/thirdfloor.svg', 'id': 'floor3' }
+        { 'path': '../images/map-images/thirdfloor.svg', 'id': 'floor3' },
+        { 'path': '../images/map-images/cc.svg', 'id': 'floor4' }
     ];
 
     var DEFAULT_MAP = 'floor3';

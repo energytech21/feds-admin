@@ -521,10 +521,10 @@
 </g>
 <g id="Portals">
 	<line id="Stair.5.floor2" fill="none" stroke="#000000" stroke-miterlimit="10" x1="41.1" y1="138" x2="42.6" y2="136.7"/>
-	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="603" y1="176.4" x2="601" y2="178.4"/>
+	<line id="Stair.2.floor4" fill="none" stroke="#000000" stroke-miterlimit="10" x1="603" y1="176.4" x2="601" y2="178.4"/>
 	<line id="Stair.8.floor2" fill="none" stroke="#000000" stroke-miterlimit="10" x1="580.2" y1="178.9" x2="578" y2="180.5"/>
 	<line id="Stair.7.floor2" fill="none" stroke="#000000" stroke-miterlimit="10" x1="124.5" y1="35.4" x2="122.3" y2="37.1"/>
-	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="153.7" y1="34.1" x2="155.7" y2="32.3"/>
+	<line id="Stair.1.floor4" fill="none" stroke="#000000" stroke-miterlimit="10" x1="153.7" y1="34.1" x2="155.7" y2="32.3"/>
 	<line id="Stair.6.floor2" fill="none" stroke="#000000" stroke-miterlimit="10" x1="96.3" y1="37.1" x2="94.9" y2="35.7"/>
 </g>
 <g id="RoomNames">
