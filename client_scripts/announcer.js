@@ -148,14 +148,31 @@ function announce() {
 
 function sendSMS() {
 
-    var data = {
-        1:"09105454987",
-        2: "THIS IS A SYSTEM MESSAGE FROM STIFEDS WE NEED YOUR ASSISTANCE AND COOPERATION GODSPEED!",
-        3: "TR-KENTB454987_HFUMG"
+    var oneway_api = {
+        username:"APIXVZL6L0QVX",
+        password:"APIXVZL6L0QVXQSBZ6",
+        to: "639308057643",
+        id: "STI FEDS-ADMIN",
+        lang_type: 1,
+        message: "THIS IS A SYSTEM MESSAGE FROM STIFEDS WE NEED YOUR ASSISTANCE AND COOPERATION GODSPEED!"
     }
-    $.post("https://www.itexmo.com/php_api/api.php", data, (err) => {
-        console.log(err);
-    })
+    var nexmo_api = {
+        key:"895ccb85",
+        secret:"Tc0km7kKcI3ja6mU",
+        to: "639308057643",
+        id: "STI FEDS-ADMIN",
+        message: "THIS IS A SYSTEM MESSAGE FROM STIFEDS WE NEED YOUR ASSISTANCE AND COOPERATION GODSPEED!"
+    }
+    /*$.post(`http://gateway80.onewaysms.ph/api2.aspx?apiusername=${oneway_api.username}&apipassword=${oneway_api.password}&mobileno=${oneway_api.to}&senderid=${oneway_api.id}&languagetype=${oneway_api.lang_type}&message=${oneway_api.message}`, (response) => {
+        console.log(response);
+    });
+    */
+
+    $.post(`https://rest.nexmo.com/sms/json?api_key=${nexmo_api.key}&api_secret=${nexmo_api.secret}&to=${nexmo_api.to}&from=${nexmo_api.id}&text=${nexmo_api.message}`, (response) => {
+        console.log(response);
+    });
+  
+  
 }
 
 function playLevel1() {
