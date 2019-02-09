@@ -90,84 +90,10 @@ exports.post_earthquake = (req, res, next) => {
             y_data: req.body.y_data,
             z_data: req.body.z_data,
         };
-        //#region old earthquake alarm code
-        /*
-               var eq_def={
-       
-               };
-       
-               conn.query("SELECT * from config_alarm where sensor_type = 'earth_def' ", function (err, rows) {
-                   if (err) {
-                       console.log(err);
-                       return next("Mysql error, check your query");
-                   }
-       
-                   eq_def.x = rows[0].level1_threshold;
-                   eq_def.y = rows[0].level2_threshold;
-                   eq_def.z = rows[0].level3_threshold;
-       
-               });
-       
-               conn.query("select * from config_alarm where sensor_type = 'earth' ", (err, result) => {
-                   if (result[0] != undefined) {
-       
-                     var level = {
-                           x: {
-                               one: Math.abs(eq_def.x) + result[0].level1_threshold,
-                               two: Math.abs(eq_def.x) + result[0].level2_threshold,
-                               three: Math.abs(eq_def.x) + result[0].level3_threshold
-                           },
-                           y: {
-                               one: Math.abs(eq_def.y) + result[0].level1_threshold,
-                               two: Math.abs(eq_def.y) + result[0].level2_threshold,
-                               three: Math.abs(eq_def.y) + result[0].level3_threshold
-                           },
-                           z: {
-                               one: Math.abs(eq_def.z) + result[0].level1_threshold,
-                               two: Math.abs(eq_def.z) + result[0].level2_threshold,
-                               three: Math.abs(eq_def.z) + result[0].level3_threshold
-                           }
-                       }
-       
-                       var exp = {
-                           x: {
-                               one: ((Math.abs(sensor_data.x_data) >= level.x.one) && !(Math.abs(sensor_data.x_data) >= level.x.two)),
-                               two: ((Math.abs(sensor_data.x_data) >= level.x.two) && !(Math.abs(sensor_data.x_data) >= level.x.three)),
-                               three: (Math.abs(sensor_data.x_data) >= level.x.three)
-                           },
-                           y: {
-                               one: ((Math.abs(sensor_data.y_data) >= level.y.one) && !(Math.abs(sensor_data.y_data) >= level.y.two)),
-                               two: ((Math.abs(sensor_data.y_data) >= level.y.two) && !(Math.abs(sensor_data.y_data) >= level.y.three)),
-                               three: (Math.abs(sensor_data.y_data) >= level.y.three)
-                           },
-                           z: {
-                               one: ((Math.abs(sensor_data.z_data) >= level.z.one) && !(Math.abs(sensor_data.z_data) >= level.z.two)),
-                               two: ((Math.abs(sensor_data.z_data) >= level.z.two) && !(Math.abs(sensor_data.z_data) >= level.z.three)),
-                               three: (Math.abs(sensor_data.z_data) >= level.z.three)
-                           }
-                       }
-       
-                       if (exp.x.one || exp.y.one || exp.z.one) {
-                           sensor_data.level = 'Level 1';
-                           req.io.emit('alarm/earth', sensor_data);
-                       }
-                       else if (exp.x.two || exp.y.two || exp.z.two) {
-                           sensor_data.level = 'Level 2';
-                           req.io.emit('alarm/earth', sensor_data);
-       
-                       } else if (exp.x.three || exp.y.three || exp.z.three) {
-                           sensor_data.level = 'Level 3';
-                           req.io.emit('alarm/earth', sensor_data);
-       
-                       }
-                  
-                   }
-       
-               });
-        */
-        //#endregion
+        var time = req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss");
+
         conn.beginTransaction((err) => {
-            conn.query("insert into sensors_earthquake (x_data,y_data,z_data,time) values (?,?,?,?)", [sensor_data.x_data, sensor_data.y_data, sensor_data.z_data, req.moment().tz("Asia/Manila").format("YYYY-MM-DD HH:mm:ss")], (err, result) => {
+            conn.query("insert into sensors_earthquake (x_data,y_data,z_data,time) values (?,?,?,?)", [sensor_data.x_data, sensor_data.y_data, sensor_data.z_data, time], (err, result) => {
                 if (err) return next("CONNECTION ERROR CHECK QUERY");
 
                 conn.commit(function (err) {
@@ -217,25 +143,32 @@ exports.post_earthquake = (req, res, next) => {
                         }
 
                         var result_mv = magnitude_data[0].calculated_data.mv;
+                        conn.query("insert into sensors_history_earthquake (magnitude,time) values (?,?)",[result_mv,time],(err,result)=>{
+                            if(err) return conn.rollback(()=>{
+                                throw err;
+                            });
+                             
+                            conn.query("select * from config_alarm where sensor_type = 'earth'", (err, result) => {
+                                if (result_mv >= result[0].level1_threshold && result_mv < result[0].level2_threshold) {
+                                    sensor_data.level = "Level 1";
+                                    req.io.emit('alarm/smoke', sensor_data);
+                                }
+                                else if (result_mv >= result[0].level2_threshold && result_mv < result[0].level3_threshold) {
+                                    sensor_data.level = "Level 2";
+                                    req.io.emit('alarm/smoke', sensor_data);
+                                }
+                                else if (result_mv >= result[0].level3_threshold) {
+                                    sensor_data.level = "Level 3";
+                                    req.io.emit('alarm/smoke', sensor_data);
+                                }
+                            });
 
-                        if (result_mv >= 4.0 && result_mv <= 4.9) {
-                            sensor_data.level = 'Level 1';
-                            req.io.emit('alarm/earth', sensor_data);
-                        }
-                        else if (result_mv >= 5.0 && result_mv <= 5.9) {
-                            sensor_data.level = 'Level 2';
-                            req.io.emit('alarm/earth', sensor_data);
-
-                        } else if (result_mv >= 6.0) {
-                            sensor_data.level = 'Level 3';
-                            req.io.emit('alarm/earth', sensor_data);
-                        }
-                        req.io.emit('earth/sensor', sensor_data);
-                        res.send('success');
-                        res.end();
+                            req.io.emit('earth/sensor', sensor_data);
+                            res.send('success');
+                            res.end();
+                        });
+                
                     });
-
-
                 });
             });
         });
@@ -330,12 +263,12 @@ exports.test_page = (req, res, next) => {
 exports.get_probability = (req, res, next) => {
 
     req.getConnection((err, conn) => {
-
+        
         var today = req.moment().tz("Asia/Manila");
         var last_sevendays = req.moment().subtract(7,'d');
 
         conn.query("select * from sensors_earthquake where CAST(`time` AS date) between CAST( ? AS DATE) and CAST( ? AS DATE) order by `time`",[last_sevendays.format("YYYY-MM-DD"),today.format("YYYY-MM-DD")],(err, result) => {
-            if (err) return next("CONNECTION ERROR CHECK QUERY");
+            if (err) return next(err);
 
             var magnitude_data = {
                 data: [],

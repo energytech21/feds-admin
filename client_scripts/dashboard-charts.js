@@ -20,7 +20,7 @@ function loadChart() {
   var data = [x_axis, y_axis];
 
   var layout = {
-    title: 'Earthquake Movement Data',
+    title: 'Earthquake Movement Graph',
     xaxis: {
       title: 'Time',
       showgrid: false,
@@ -30,7 +30,7 @@ function loadChart() {
     yaxis: {
       title: "Sensor Data",
       showgrid: false,
-      zeroline: false
+      zeroline: true
     },
 
   };
