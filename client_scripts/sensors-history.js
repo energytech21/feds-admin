@@ -18,6 +18,7 @@ function generateResult(formID){
       }
       if(response.sensor_type=="earth"){
         loadGraph("EQChart",response);
+        loadGraph("EQChart2",response);
       }
       if(response.sensor_type=="temp"){
         loadGraph("tempChart",response);
@@ -45,9 +46,14 @@ function getLocations(){
 
 
 function loadGraph(targetChart,data){
+  const chartNames = {
+    "EQChart": "Earthquake Vibration Chart",
+    "EQChart2" : "Earthquake Magnitude Chart",
+    "smokeChart": "Smoke PPM Chart",
+    "tempChart":"Temperature Celcius Chart"
+  }
   var lines;
-  console.log(data.time);
-  if(targetChart=="EQChart"){
+  if(targetChart == "EQChart"){
     var trace1 = {
       x: data.time,
       y: data.x_trace,
@@ -62,6 +68,15 @@ function loadGraph(targetChart,data){
     };
     lines = [trace1,trace2];
   }
+  else if(targetChart == "EQChart2"){
+    var trace1 = {
+      x: data.mv.time,
+      y: data.mv.magnitude,
+      type: 'line',
+      name: 'Magnitude Scale'
+    };
+    lines = [trace1];
+  }
   else{
     var trace1 = {
       x: data.x,
@@ -74,6 +89,7 @@ function loadGraph(targetChart,data){
   
   }
   var layout  = {
+    title: chartNames[targetChart], 
     xaxis:{
       visible:false
     }

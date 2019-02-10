@@ -37,7 +37,7 @@ exports.post_sensors = (req, res, next) => {
                                 throw err;
                             });
                         }
-                        req.io.emit('smoke/sensor/' + sensor_data.location, sensor_data);
+                        req.io.emit('smoke/sensor', sensor_data);
                         res.send('success');
 
                         res.end();
@@ -71,7 +71,7 @@ exports.post_sensors = (req, res, next) => {
                             });
                         }
 
-                        req.io.emit('fire/sensor/' + sensor_data.location, sensor_data);
+                        req.io.emit('fire/sensor', sensor_data);
                         res.send('success');
                         res.end();
                     });
@@ -206,7 +206,10 @@ exports.get_sensors_data = (req, res, next) => {
                 });
             }
             if (sensor_data.sensor_type == "earth") {
-                var table_data = { x_trace: [], y_trace: [], z_trace: [], time: [], sensor_type: "earth" };
+                var table_data = { x_trace: [], y_trace: [], z_trace: [], time: [], mv : {
+                    magnitude: [],
+                    time: []
+                },sensor_type: "earth" };
                 conn.query("select * from sensors_earthquake where CAST(`time` AS date) BETWEEN CAST(? AS date) and CAST(? AS date) order by `time`", [sensor_data.startDate, sensor_data.endDate], (err, result) => {
                     if (err) return next("CONNECTION ERROR CHECK QUERY");
 
@@ -217,17 +220,26 @@ exports.get_sensors_data = (req, res, next) => {
                         table_data.time.push(req.moment(item.time).format("DD-MM-YYYY hh:mm:ss A"));
                     });
 
+                    conn.query("select * from sensors_history_earthquake where CAST(`time` AS date) BETWEEN CAST(? AS date) and CAST(? AS date) order by `time`", [sensor_data.startDate, sensor_data.endDate], (err, result) => {
+                        if (err) return next("CONNECTION ERROR CHECK QUERY");
 
-                    conn.commit(function (err) {
-                        if (err) {
-                            return conn.rollback(function () {
-                                throw err;
-                            });
-                        }
-                        res.send(table_data);
-                        res.end();
+                        result.forEach((item) => {
+                            table_data.mv.magnitude.push(item.magnitude);
+                            table_data.mv.time.push(req.moment(item.time).format("DD-MM-YYYY hh:mm:ss A"));
+                        });
+
+                        conn.commit(function (err) {
+                            if (err) {
+                                return conn.rollback(function () {
+                                    throw err;
+                                });
+                            }
+                            res.send(table_data);
+                            res.end();
+                        });
+    
                     });
-
+                   
                 });
             }
             if (sensor_data.sensor_type == "temp") {

@@ -1,4 +1,5 @@
 <%- include('header.ejs'); %>
+<%- include('modal.ejs'); %>
 <!-- side bar -->
 <div class="ui small sidebar inverted vertical left menu" id='sidebar' style="background: #7f0000;">
     <div class="item" style="background: #8e0000">
@@ -164,7 +165,46 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class='ui fluid wide column'>
+                <div class='ui segments'>
+                    <div class='ui top attatched orange inverted segment'>
+                        <h1>Location Settings</h1>
+                    </div>
+                    <div class='ui horizontal segments'>
+                        <div class='ui segment'>
+                            <div class="ui grid">
+                                <div class="row">
+                                    <div class="sixteen wide column">
+                                        <table class="ui selectable celled small compact table" id='tbl_location'
+                                            data-pagination=true>
+                                            <thead>
+                                                <tr>
+                                                    <th>Location</th>
+                                                    <th>Floor</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <button class="ui green fluid button" onclick="newLocation()">Add Location</button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class='ui fluid wide column'>
                 <div class='ui segments'>

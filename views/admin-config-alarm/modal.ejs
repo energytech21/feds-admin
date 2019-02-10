@@ -1,0 +1,37 @@
+<div class="ui small modal" id="locationModal">
+    <i class="close icon"></i>
+    <div class="header" id="header">
+        Edit Location
+    </div>
+    <div class="content">
+        <form class="ui form" id="locationForm">
+            <h4 class="ui dividing header">Location Information</h4>
+            <div class="field">
+               <label>Location</label>
+               <input type="text" name="location">
+            </div>
+            <div class="field">
+                <label>Floor</label>
+                <select class="ui dropdown" name="floor_id">
+                    <option value="">Floor</option>
+                    <option value="1">1st Floor</option>
+                    <option value="2">2nd Floor</option>
+                    <option value="3">3rd Floor</option>
+                    <option value="4">4th Floor</option>
+                </select>
+             </div>
+            <div class="ui hidden negative message"></div>
+            <div class="ui hidden positive message"></div>
+        </form>
+
+    </div>
+    <div class="actions">
+        <button class="ui positive right labeled icon button">
+            Save
+            <i class="checkmark icon"></i>
+        </button>
+        <button class="ui black deny button">
+            Cancel
+        </button>
+    </div>
+</div>
